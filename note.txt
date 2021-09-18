@@ -1,0 +1,6 @@
+Primary - #4CD195
+Secondary - #2D3747
+Main Background - #EDF2F6
+
+box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
+box-shadow: 0 3px 8px rgb(0 0 0 / 15%);
