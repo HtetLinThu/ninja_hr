@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\CheckinCheckout;
-use App\CompanySetting;
-use App\Http\Controllers\Controller;
 use App\User;
 use Carbon\Carbon;
+use App\CompanySetting;
+use App\CheckinCheckout;
 use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
 
 class MyPayrollController extends Controller
 {
@@ -25,9 +26,10 @@ class MyPayrollController extends Controller
         $endOfMonth = Carbon::parse($startOfMonth)->endOfMonth()->format('Y-m-d');
         $daysInMonth = Carbon::parse($startOfMonth)->daysInMonth;
 
-        $workingDays = Carbon::parse($startOfMonth)->subDays(1)->diffInDaysFiltered(function (Carbon $date) {
+        $workingDays = Carbon::parse($startOfMonth)->diffInDaysFiltered(function (Carbon $date) {
+            Log::info($date . ' -> ' . $date->isWeekday());
             return $date->isWeekday();
-        }, Carbon::parse($endOfMonth));
+        }, Carbon::parse($endOfMonth)->addDays(1));
 
         $offDays = $daysInMonth - $workingDays;
 
