@@ -27,7 +27,6 @@ class MyPayrollController extends Controller
         $daysInMonth = Carbon::parse($startOfMonth)->daysInMonth;
 
         $workingDays = Carbon::parse($startOfMonth)->diffInDaysFiltered(function (Carbon $date) {
-            Log::info($date . ' -> ' . $date->isWeekday());
             return $date->isWeekday();
         }, Carbon::parse($endOfMonth)->addDays(1));
 

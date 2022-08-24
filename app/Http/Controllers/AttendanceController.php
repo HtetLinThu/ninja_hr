@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
+use PDF;
 
 class AttendanceController extends Controller
 {
@@ -161,5 +162,12 @@ class AttendanceController extends Controller
         $periods = new CarbonPeriod($startOfMonth, $endOfMonth);
         $attendances = CheckinCheckout::whereMonth('date', $month)->whereYear('date', $year)->get();
         return view('components.attendance_overview_table', compact('employees', 'company_setting', 'periods', 'attendances'))->render();
+    }
+
+    public function pdfDownload(){
+        $attendances = CheckinCheckout::with('employee')->get();
+
+        $pdf = PDF::loadView('pdf.attendance', ['attendances' => $attendances]);
+        return $pdf->download('attendance.pdf');
     }
 }

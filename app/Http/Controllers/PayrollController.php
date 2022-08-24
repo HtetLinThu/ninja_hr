@@ -33,9 +33,9 @@ class PayrollController extends Controller
         $endOfMonth = Carbon::parse($startOfMonth)->endOfMonth()->format('Y-m-d');
         $daysInMonth = Carbon::parse($startOfMonth)->daysInMonth;
 
-        $workingDays = Carbon::parse($startOfMonth)->subDays(1)->diffInDaysFiltered(function (Carbon $date) {
+        $workingDays = Carbon::parse($startOfMonth)->diffInDaysFiltered(function (Carbon $date) {
             return $date->isWeekday();
-        }, Carbon::parse($endOfMonth));
+        }, Carbon::parse($endOfMonth)->addDays(1));
 
         $offDays = $daysInMonth - $workingDays;
 
