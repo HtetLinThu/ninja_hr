@@ -1,6 +1,8 @@
-## About Ninja HR Course (Laravel Project Base Tutorial)
+## Ninja HR Course (Laravel Project Base Tutorial)
 
-Ninja HR is laravel base project. It includes employee management, attendance management, project management.
+Ninjs HR (employee management, attendance management, project management) is developed with Laravel [Youtube Playlist](https://youtube.com/playlist?list=PLOvEA8-W5LWnoffB0qQTgHMtmTRFlaKXr&si=FjSSY3CCZ8lGT_Sx) .
+
+![Thumbnail](https://github.com/HtetLinThu/ninja_hr/blob/main/public/thumbnail.png)
 
 - git clone https://github.com/HtetLinThu/ninja_hr.git
 - copy .env.example to .env
